@@ -14,7 +14,7 @@ inet ifconfig eth2 class slave
 
 inet bonding add 0 mode balance-rr slaves eth1 eth2
 
-inet ifconfig bond0 address 198.168.99.2 netmask 255.255.255.0
+inet ifconfig bond0 address 192.168.99.2 netmask 255.255.255.0
 
 iplir adapter add bond0 traffic on
 inet ifconfig eth1 up
