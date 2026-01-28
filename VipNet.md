@@ -22,3 +22,12 @@ inet ifconfig eth2 up
 
 inet ifconfig bond0 up
 ```
+
+### Проверка доступа на координаторах
+
+```
+inet ping «ip»
+inet show interface ethN (где N – номер
+интерфейса)
+machine show date
+```
