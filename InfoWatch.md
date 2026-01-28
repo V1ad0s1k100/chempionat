@@ -1,19 +1,25 @@
-### Распределение IP-адресов в сети
+## Распределение IP-адресов в сети (распределенная)
 
-```
-demolab 192.168.88.21
-aldpro 192.168.88.30
-iwdm-db 192.168.88.31
-iwdm-server 192.168.88.32
-iwdm-client-astra 192.168.88.33
-iwdm-client-win 192.168.88.34
-iwtm-server 192.168.88.35
-iwtm-db 192.168.88.36
-iwdd 192.168.88.37
-client-aldpro 192.168.88.38
+| ПК                   | IP             | ОС    |
+| -------------------- | -------------- | ----- |
+| demolab              | 192.168.88.21  | win10 |
+| aldpro               | 192.168.88.30  | astra |
+|                      |                |
+| iwdm-db              | 192.168.88.31  | astra |
+| iwdm-server          | 192.168.88.32  | win10 |
+|                      |                |
+| iwtm-db              | 192.168.88.33  | astra |
+| iwtm-server          | 192.168.88.34  | astra |
+|                      |                |
+| iwdd                 | 192.168.88.35  | win10 |
+|                      |                |
+| demolab-client-astra | 192.168.88.101 | astra |
+| demolab-client-win   | 192.168.88.102 | win10 |
+| aldpro-client        | 192.168.88.103 | astra |
 
-Пароли: xxXX1234
-```
+---
+
+## Доверительные отношения на `aldpro`
 
 ### `/etc/hosts`
 
@@ -21,32 +27,6 @@ client-aldpro 192.168.88.38
 192.168.88.21 demolab.demo.lab demo.lab demo
 192.168.88.30 dc.aldpro.lab dc
 192.168.88.38 client.aldpro.lab client
-```
-
----
-
-### `/etc/apt/sources.list`
-
-```
-
-Доделать
-
-#deb cdrom:[OS Astra Linux 1.7.3 1.7_x86-64 DVD 1/] 1.7_x86-64 contrib main non-free
-deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-main/ 1.7_x86-64 main contrib non-free
-deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.7_x86-64 main contrib non-free
-
-#deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-base/ 1.7_x86-64 main contrib non-free
-#deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/ 1.7_x86-64 main contrib non-free
-```
-
----
-
-### Настройка прокси-сервера для загрузки пакетов (APT) `/etc/apt/apt.conf`
-
-```
-Acquire::http::proxy "http://fepo:fepo18@10.0.0.67:3128";
-Acquire::https::proxy "http://fepo:fepo18@10.0.0.67:3128";
-Acquire::ftp::proxy "http://fepo:fepo18@10.0.0.67:3128";
 ```
 
 ### Настройка сетевых интерфейсов `/etc/network/interfaces`
@@ -108,6 +88,29 @@ kinit admin
 sudo ipa-adtrust-install
 ```
 
+---
+
+## Доверительные отношения на `aldpro-client`
+
+### `/etc/apt/sources.list`
+
+```
+#deb cdrom:[OS Astra Linux 1.7.3 1.7_x86-64 DVD 1/] 1.7_x86-64 contrib main non-free
+deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-main/ 1.7_x86-64 main contrib non-free
+deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.7_x86-64 main contrib non-free
+
+#deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-base/ 1.7_x86-64 main contrib non-free
+#deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/ 1.7_x86-64 main contrib non-free
+```
+
+### Настройка прокси-сервера для загрузки пакетов (APT) `/etc/apt/apt.conf`
+
+```
+Acquire::http::proxy "http://fepo:fepo18@10.0.0.67:3128";
+Acquire::https::proxy "http://fepo:fepo18@10.0.0.67:3128";
+Acquire::ftp::proxy "http://fepo:fepo18@10.0.0.67:3128";
+```
+
 ### Для ввода утилита `fly-admin-freeipa-client`
 
 ### Ввод по паролю
@@ -123,8 +126,6 @@ sudo ipa-adtrust-install
 ipa trust-add --type=ad demo.lab --range-type ipa-ad-trust --admin Administrator --password --two-way TRUE
 ```
 
----
-
 Не проверено
 
 ### Установка клиента FreeIPA
@@ -138,5 +139,3 @@ sudo ipa-client-install --mkhomedir --password='ПАРОЛЬ' -U
 ```
 ipa host-add astra.aldpro.lab --random --ip-address=192.168.88.31 --force
 ```
-
----
