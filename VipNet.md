@@ -27,7 +27,6 @@ inet ifconfig bond0 up
 
 ```
 inet ping «ip»
-inet show interface ethN (где N – номер
-интерфейса)
+inet show interface ethN (где N – номер интерфейса)
 machine show date
 ```
