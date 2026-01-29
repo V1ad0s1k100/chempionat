@@ -19,7 +19,9 @@
 
 ---
 
-## Для подключения диска `deb file:///media/cdrom0/ 1.7_x86-64 main contrib non-free`
+## Для подключения диска 
+
+```deb file:///media/cdrom0/ 1.7_x86-64 main contrib non-free```
 
 ## Ввод `demolab-client-astra` в `demolab`
 
