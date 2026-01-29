@@ -33,6 +33,7 @@ machine show date
 
 ### Кластер
 
+```
 Cluster
 failover stop
 failover config edit
@@ -44,12 +45,17 @@ eth0 – 192.18.30.2/27
 eth1 – 172.21.30.1/26
 eth2 – 192.168.30.1/24
 [channel] eth0 – 192.18.30.2/27
+testip = 127.0.0.1
 [channel] eth1 – 172.21.30.1/26
+testip = 127.0.0.1
 [sendconfig] – 192.168.30.2/24
 2 координатор (Cluster)
 eth0 – 192.18.30.2/27
 eth1 – 172.21.30.1/26
 eth2 – 192.168.30.2/24
 [channel] eth0 – 192.18.30.2/27
+testip = 127.0.0.1
 [channel] eth1 – 172.21.30.1/26
+testip = 127.0.0.1
 [sendconfig] – 192.168.30.1/24
+```
