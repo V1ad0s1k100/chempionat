@@ -160,3 +160,14 @@ deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.
 ```
 sudo ipa-client-install --mkhomedir --password='ПАРОЛЬ' -U
 ```
+
+## Установка `postgresql` на Linux
+
+```
+sudo apt install postgresql
+systemctl status postgresql
+sudo su - postgres
+psql -c "alter user postgres with password 'xxXX1234'"
+sudo nano /etc/postgresql/11/main/postgresql.conf
+
+```
